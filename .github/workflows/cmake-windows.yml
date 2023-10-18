@@ -36,6 +36,10 @@ jobs:
         echo "tag=$(Get-Date -Format 'yyyy-MM-dd_HHmmss')" >> $ENV:GITHUB_OUTPUT
       id: release_tag
 
+    - name: find .exe file
+      run: |
+        (Get-ChildItem -Path {{github.workspace}} -Filter *.exe).FullName
+
     - name: Add Tag to Commit
       run: |
         git tag ${{ steps.release_tag.outputs.tag }}
