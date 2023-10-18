@@ -30,8 +30,19 @@ jobs:
     - name: Build
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-      
+
+    - name: Generate Tag name for release
+      run: |
+        echo "$(date '+%Y.%m.%d_%H.%M.%S')" >> $GITHUB_OUTPUT
+      id: release_tag
+
+    - name: Add Tag to Commit
+      run: |
+        git tag ${{ steps.release_tag.outputs.tag }}
+        git push origin ${{ steps.release_tag.outputs.tag }}
+  
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: ${{github.workspace}}/build/Release/win32-error-output-stream-test.exe
+        tag_name: ${{ steps.release_tag.outputs.tag }}
