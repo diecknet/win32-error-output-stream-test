@@ -44,5 +44,5 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: ${{github.workspace}}/build/Release/win32-error-output-stream-test.exe
+        files: ${{github.workspace}}\build\Release\win32-error-output-stream-test.exe
         tag_name: ${{ steps.release_tag.outputs.tag }}
