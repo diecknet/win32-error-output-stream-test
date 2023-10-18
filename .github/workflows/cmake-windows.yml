@@ -33,7 +33,7 @@ jobs:
 
     - name: Generate Tag name for release
       run: |
-        echo "tag=$(Get-Date -Format 'yyyy-MM-dddd_HH:mm:ss')" >> $ENV:GITHUB_OUTPUT
+        echo "tag=$(Get-Date -Format 'yyyy-MM-dd_HHmmss')" >> $ENV:GITHUB_OUTPUT
       id: release_tag
 
     - name: Add Tag to Commit
