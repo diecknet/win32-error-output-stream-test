@@ -43,7 +43,7 @@ jobs:
 
     - name: Get Exe Path
       run: |
-        Get-ChildItem ${{github.workspace}}/build/release/*.exe
+        (Get-ChildItem ${{github.workspace}}/build/release/*.exe).FullName
   
     - name: Release
       uses: softprops/action-gh-release@v1
