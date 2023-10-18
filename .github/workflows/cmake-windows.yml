@@ -41,7 +41,7 @@ jobs:
         git tag ${{ steps.release_tag.outputs.tag }}
         git push origin ${{ steps.release_tag.outputs.tag }}
 
-    - name: Upload Artifacts (.bin files)
+    - name: Upload Artifacts (.exe file)
       uses: actions/upload-artifact@v3
       with:
         name: build-data
@@ -60,7 +60,7 @@ jobs:
           name: build-data
 
       - name: Create tagged release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v0.1.15
         with:
           files: |
             *.exe
