@@ -36,11 +36,6 @@ jobs:
         echo "tag=$(Get-Date -Format 'yyyy-MM-dd_HHmmss')" >> $ENV:GITHUB_OUTPUT
       id: release_tag
 
-    - name: find .exe file
-      run: |
-        echo "exe_path=$((Get-ChildItem -Path D:\a\ -Filter *.exe).FullName)" >> $ENV:GITHUB_OUTPUT
-      id: find_exe
-  
     - name: Add Tag to Commit
       run: |
         git tag ${{ steps.release_tag.outputs.tag }}
@@ -50,6 +45,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ${{github.workspace}}\build\Release\win32-error-output-stream-test.exe
-          ${{ steps.find_exe.outputs.exe_path }}
+          ${{github.workspace}}\build\Release\*.exe
+          ${{github.workspace}}\build\*.exe
         tag_name: ${{ steps.release_tag.outputs.tag }}
