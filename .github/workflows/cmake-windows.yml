@@ -40,6 +40,12 @@ jobs:
       run: |
         git tag ${{ steps.release_tag.outputs.tag }}
         git push origin ${{ steps.release_tag.outputs.tag }}
+
+    - name: test some powershell
+      run: |
+        "Date/Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+        "Boink 👀"
+        Get-ChildItem D:\a\ -Recurse
   
     - name: Release
       uses: softprops/action-gh-release@v1
