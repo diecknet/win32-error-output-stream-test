@@ -38,7 +38,7 @@ jobs:
 
     - name: find .exe file
       run: |
-        (Get-ChildItem -Path {{github.workspace}} -Filter *.exe).FullName
+        (Get-ChildItem -Path ${{github.workspace}} -Filter *.exe).FullName
 
     - name: Add Tag to Commit
       run: |
